@@ -49,8 +49,8 @@ export default function Weather() {
           </div>
         </main>
         <footer>
-        <a
-            href="https://github.com/Aldema29/weather-react-new">
+        <a  
+            href="https://github.com/Aldema29/weather-react-new" > Open source Code 
             </a>
         </footer>
       </div>
