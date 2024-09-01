@@ -48,7 +48,11 @@ export default function Weather() {
             </div>
           </div>
         </main>
-        <footer></footer>
+        <footer>
+        <a
+            href="https://github.com/Aldema29/weather-react-new">
+            </a>
+        </footer>
       </div>
     </div>
   );
