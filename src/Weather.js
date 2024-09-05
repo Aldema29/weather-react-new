@@ -50,7 +50,7 @@ export default function Weather() {
         </main>
         <footer>
         <a  
-            href="https://github.com/Aldema29/weather-react-new" target="blank"> Open source Code 
+            href="https://github.com/Aldema29/weather-react-new" target="blank"> Open source Code on Github 
             </a>
         </footer>
       </div>
