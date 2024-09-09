@@ -1,6 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 
 export default function Weather() {
+  let [City, setCity] = useState("");
+  let [message, setMessage] = useState(false);
+  let [weather, setWeather] = useState({});
+
+  let apiKey = "6f578b96aa9505bcce148ac22cb85794"
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?query={query}&key={key}"
+
+  function displayWeather(response) {
+    setMessage(true);
+    setWeather({
+      temperature: response.data.main.temp,
+      wind: response.data.wind.speed,
+      humidity: response.data.main.humidty, 
+    });
+    }
+  
+  
   return (
     <div>
       <div class="weather-app">
@@ -21,7 +38,7 @@ export default function Weather() {
           <div class="weather-app-data">
             <div>
               <h1 class="weather-app-city" id="city">
-                New York, NY
+                New York, NYC
               </h1>
               <p class="weather-app-details">
                 <span id="time">Sunday 12:00</span>,{" "}
