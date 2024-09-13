@@ -1,76 +1,71 @@
 import React, {useState} from "react";
+import axios from "axios";
+import WeatherInformation from "./WeatherInformation";
 
-export default function Weather() {
-  let [City, setCity] = useState("");
-  let [message, setMessage] = useState(false);
-  let [weather, setWeather] = useState({});
 
-  let apiKey = "6f578b96aa9505bcce148ac22cb85794"
-  let apiUrl = "https://api.shecodes.io/weather/v1/current?query={query}&key={key}"
+export default function Weather(props) {
+  let [weatherData, setWeatherData] = useState({message:false});
+let [city, setCity] = useState(props.defaultCity);
 
-  function displayWeather(response) {
-    setMessage(true);
-    setWeather({
-      temperature: response.data.main.temp,
-      wind: response.data.wind.speed,
-      humidity: response.data.main.humidty, 
-    });
-    }
-  
-  
+function handleResponse(response) {
+  console.log(response.data)
+  setWeatherData({
+    message: true,
+    temperature:response.data.temperature.current,
+    wind: response.data.wind.speed,
+    city: response.data.city,
+    date: new Date(response.data.time * 1000),
+    humidity: response.data.temperature.humidity,
+    iconUrl : response.data.condition.icon_url,
+    description: response.data.codition.description,
+  });
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  searchCity();
+}
+
+function handleCityChange(event) {
+  setCity(event.target.value);
+}
+
+function searchCity(){
+  let apiKey = "6210bfb6041b002d1b53875oa36td949c";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apikey}&units=metric`;
+  axios.get(apiUrl).then(handleResponse);
+  console.log(apiUrl);
+}
+
+if (weatherData.message) {
   return (
-    <div>
-      <div class="weather-app">
-        <header>
-          <form class="search-form" id="search-form">
+      <div className="weather">
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-9">
             <input
-              class="search-form-input"
-              id="search-form-input"
+            className="form-control"
+            autoFocus="on"
               type="search"
               placeholder="Enter a city..."
-              required
+              onChange={handleCityChange}
             />
-            <input class="search-form-button" type="submit" value="Search" />
-          </form>
-        </header>
+            </div>
 
-        <main>
-          <div class="weather-app-data">
-            <div>
-              <h1 class="weather-app-city" id="city">
-                New York, NYC
-              </h1>
-              <p class="weather-app-details">
-                <span id="time">Sunday 12:00</span>,{" "}
-                <span id="description">sunny</span>
-                <br />
-                Humidity:{" "}
-                <strong>
-                  <span id="humidity">35</span>%
-                </strong>
-                , Wind:{" "}
-                <strong>
-                  <span id="wind-speed">5</span>mph
-                </strong>
-              </p>
+            <div className="col-3">
+            <input
+            type="submit"
+            value="Search"
+            className="btn btn-primary w-100"/>
             </div>
-            <div class="weather-app-temperature-container">
-              <div class="weather-app-icon" id="icon">
-                ☀️
-              </div>
-              <div class="weather-app-temperature-value" id="temperature">
-                85
-              </div>
-              <div class="weather-app-unit">&deg;F</div>
             </div>
-          </div>
-        </main>
-        <footer>
-        <a  
-            href="https://github.com/Aldema29/weather-react-new" target="blank"> Open source Code on Github 
-            </a>
-        </footer>
+      </form>
+
+      <WeatherInformation data={weatherData} />
       </div>
-    </div>
   );
+  } else {
+    searchCity();
+    return "Loading....";
+  }
 }
