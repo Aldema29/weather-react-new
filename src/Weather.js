@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import axios from "axios";
 import WeatherInformation from "./WeatherInformation";
+import WeatherForecast from "./WeatherForecast";
+import "./Weather.css";
 
 
 export default function Weather(props) {
-  let [weatherData, setWeatherData] = useState({message:false});
+let [weatherData, setWeatherData] = useState({message: false});
 let [city, setCity] = useState(props.defaultCity);
+
 
 function handleResponse(response) {
   console.log(response.data)
@@ -17,7 +20,7 @@ function handleResponse(response) {
     date: new Date(response.data.time * 1000),
     humidity: response.data.temperature.humidity,
     iconUrl : response.data.condition.icon_url,
-    description: response.data.codition.description,
+    description: response.data.condition.description,
   });
 }
 
@@ -31,7 +34,7 @@ function handleCityChange(event) {
 }
 
 function searchCity(){
-  let apiKey = "5293d8454b519c30f6f6331f38c85b4c";
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(handleResponse);
   console.log(apiUrl);
@@ -39,20 +42,19 @@ function searchCity(){
 
 if (weatherData.message) {
   return (
-      <div className="weather">
+      <div className="Weather">
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-9">
             <input
-            className="form-control"
-            autoFocus="on"
-              type="search"
-              placeholder="Enter a city..."
-              onChange={handleCityChange}
+             className="form-control search-input"
+             type="search"
+             placeholder="Enter a city..."
+             onChange={handleCityChange}
             />
             </div>
 
-            <div className="col-3">
+            <div className="col-3 p-0">
             <input
             type="submit"
             value="Search"
@@ -62,6 +64,13 @@ if (weatherData.message) {
       </form>
 
       <WeatherInformation data={weatherData} />
+      <WeatherForecast coordinates={weatherData.coordinates} city={weatherData.city}/>
+      <footer>
+         { "This app was coded by Aldema Michael-Glantz and is "}
+        <a  
+            href="https://github.com/Aldema29/weather-react-new" target="blank"> Open sourced
+            </a>
+        </footer>
       </div>
   );
   } else {
