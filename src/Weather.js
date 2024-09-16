@@ -21,6 +21,7 @@ function handleResponse(response) {
     humidity: response.data.temperature.humidity,
     iconUrl : response.data.condition.icon_url,
     description: response.data.condition.description,
+    coordinates: response.data.coordinates
   });
 }
 
@@ -35,7 +36,7 @@ function handleCityChange(event) {
 
 function searchCity(){
   let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
   axios.get(apiUrl).then(handleResponse);
   console.log(apiUrl);
 }

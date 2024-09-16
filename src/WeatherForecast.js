@@ -4,6 +4,7 @@ import axios from "axios";
 import "./WeatherForecast.css";
 
 export default function WeatherForecast(props) {
+  console.log.apply(props)
   let [loaded, setLoaded] = useState(false);
   let [forecast, setForecast] = useState(null);
 
@@ -34,10 +35,10 @@ export default function WeatherForecast(props) {
     );
   } else {
       let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-      let longitude = props.coordinates.lon;
-      let latitude = props.coordinates.lat;
+      let longitude = props.coordinates.longitude;
+      let latitude = props.coordinates.latitude;
       let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-  
+  console.log(apiUrl)
       axios.get(apiUrl).then(handleForecastResponse);
 
     return null;
