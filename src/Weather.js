@@ -74,7 +74,7 @@ if (weatherData.message) {
          { "This app was coded by Aldema Michaelo-Glantz and is "}
         <a  
             href="https://github.com/Aldema29/weather-react-new" target="blank"> Open sourced
-            </a>
+            </a> {" "}
             and is <a href="https://app.netlify.com/sites/helpful-pie-5f79cf/overview"
             target="blank" > hosted on Netifly </a>
         </footer>
