@@ -12,14 +12,18 @@ let [city, setCity] = useState(props.defaultCity);
 
 function handleResponse(response) {
   console.log(response.data)
+  let cityName = response.data.city
+  if(cityName.includes('New York')) {
+    cityName ='New York'
+  }
   setWeatherData({
     message: true,
     temperature:response.data.temperature.current,
     wind: response.data.wind.speed,
-    city: response.data.city,
+    city: cityName,
     date: new Date(response.data.time * 1000),
     humidity: response.data.temperature.humidity,
-    iconUrl : response.data.condition.icon_url,
+    icon : response.data.condition.icon,
     description: response.data.condition.description,
     coordinates: response.data.coordinates
   });
@@ -67,7 +71,7 @@ if (weatherData.message) {
       <WeatherInformation data={weatherData} />
       <WeatherForecast coordinates={weatherData.coordinates} city={weatherData.city}/>
       <footer>
-         { "This app was coded by Aldema Michael-Glantz and is "}
+         { "This app was coded by Aldema Michaelo-Glantz and is "}
         <a  
             href="https://github.com/Aldema29/weather-react-new" target="blank"> Open sourced
             </a>
