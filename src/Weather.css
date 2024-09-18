@@ -1,32 +1,32 @@
 .Weather {
   font-family: "Cerebri-Sans", Helvetica, Arial, sans-serif;
-  background: #f9f7fe;
+  background: #f9f9f9;
   border-radius: 16px;
-  box-shadow: 0px 30px 50px rgba(65, 50, 100, 0.08);
+  box-shadow: 0px 30px 50px rgba(218, 212, 231, 0.08);
   padding: 30px;
-  color: rgb(174, 212, 234);
+  color: rgb(174, 208, 228);
 }
 
 .Weather form {
   margin-top: 40px;
-  border-bottom: 1px solid #f9f7fe;
+  border-bottom: 1px solid #edecef;
   padding-bottom: 30px;
 }
 
 .Weather .search-input {
-  background: #dde8f9;
+  background: #f4eeff;
   border: none;
   padding: 15px 20px;
   display: inline-block;
   border-radius: 6px;
-  color: rgba(33, 39, 66, 0.4);
+  color: rgba(121, 138, 216, 0.4);
   font-size: 16px;
   height: 50px;
   line-height: 20px;
 }
 
 .Weather .btn {
-  background: #5d76f1;
+  background: #8f71ff;
   font-weight: bold;
   font-size: 16px;
   padding: 15px 20;
@@ -36,7 +36,7 @@
 
 .Weather .search-input::placeholder {
   line-height: 20px;
-  color: rgba(39, 33, 66, 0.4);
+  color: rgba(60, 54, 86, 0.4);
 }
 
 .Weather h1 {
@@ -65,8 +65,8 @@
 }
 
 .Weather li strong {
-  color: #213ebd;
-  font-weight: normal;
+  color: #8f71ff;
+  font-weight: bold;
 }
 
 .Weather .temperature {
